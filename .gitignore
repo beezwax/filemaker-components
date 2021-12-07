@@ -1,0 +1,5 @@
+node_modules/
+tags
+dist/*
+!dist/index.html
+deploy/config.json
