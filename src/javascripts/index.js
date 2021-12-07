@@ -33,5 +33,3 @@ class TextFieldComponent extends HTMLElement {
 }
 
 customElements.define('text-field', TextFieldComponent)
-
-// Initialization
