@@ -1,4 +1,4 @@
-import componentState from '../state/components'
+import components from '../state/components'
 
 class TextField extends HTMLElement {
   constructor () {
@@ -17,14 +17,16 @@ class TextField extends HTMLElement {
   connectedCallback () {
     if (!this.id || this.id === 'null') throw new Error('Web Component must specify an `id` attribute')
 
-    const state = componentState.add(this.id)
+    const state = components.add(this.id)
     const input = this.container.querySelector('input')
 
+    // state -> DOM
     state.onChanged((state) => {
       console.log('state is', state)
       input.value = state.value
     })
 
+    // DOM -> state
     input.addEventListener('keyup', (e) => {
       state.update((state) => {
         state.value = input.value

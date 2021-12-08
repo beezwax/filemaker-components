@@ -16,7 +16,11 @@ export default class State {
     }
 
     if (source === 'FILEMAKER') this.triggerOnChange(this._state)
-    if (source === 'DOM') this.components.push()
+    if (source === 'DOM') this.push()
+  }
+
+  push () {
+    this.components.push()
   }
 
   onChanged (cb) {
