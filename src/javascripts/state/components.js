@@ -15,12 +15,12 @@ class Components {
   pull () {
     this.dataSource.pull((data) => {
       data.forEach((record) => {
-        const { component, state } = record
-        const oldState = this.components.get(component)
+        const { id, state } = record
+        const oldState = this.components.get(id)
         if (oldState) {
           oldState.update(state, { source: 'FILEMAKER' })
         } else {
-          console.warn(`FileMaker result included state for a component with id ${component}, but no component with that id was found in the Web Viewer.`)
+          console.warn(`FileMaker result included state for a component with id ${id}, but no component with that id was found in the Web Viewer.`)
         }
       })
     })

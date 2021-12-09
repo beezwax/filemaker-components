@@ -4,13 +4,13 @@ import { debounce } from '../utils'
 // of all defined components/fields.
 const DUMMY_FM_RESULT = [
   {
-    component: 'demo-text-field',
+    id: 'demo-text-field',
     state: {
       value: 'hello'
     }
   },
   {
-    component: 'demo-text-field2',
+    id: 'demo-text-field2',
     state: {
       value: 'world'
     }
