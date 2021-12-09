@@ -8,8 +8,8 @@ class Components {
     this.components = new Map()
   }
 
-  push () {
-    this.dataSource.push()
+  push (data) {
+    this.dataSource.push(data)
   }
 
   pull () {
@@ -29,7 +29,7 @@ class Components {
   add (id) {
     if (this.components.has(id)) throw new Error(`Component with id '${id}' has already been defined`)
 
-    const state = new State(this)
+    const state = new State({ components: this, id })
     this.components.set(id, state)
     return state
   }

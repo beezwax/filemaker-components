@@ -2,10 +2,10 @@
 // function must be used.
 //
 export default class State {
-  constructor (components) {
+  constructor ({ components, id }) {
     this.components = components
     this.observers = []
-    this._state = {}
+    this._state = { id }
   }
 
   // Updates the current state. The first parameter can be an object or a
@@ -30,7 +30,7 @@ export default class State {
   }
 
   push () {
-    this.components.push()
+    this.components.push(this._state)
   }
 
   onChanged (cb) {
