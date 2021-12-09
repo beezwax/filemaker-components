@@ -28,9 +28,9 @@ class TextField extends HTMLElement {
 
     // DOM -> state
     input.addEventListener('keyup', (e) => {
-      state.update((state) => {
-        state.value = input.value
-      }, { source: 'DOM' })
+      state.update((state) => ({
+        value: input.value
+      }), { source: 'DOM' })
     })
   }
 }

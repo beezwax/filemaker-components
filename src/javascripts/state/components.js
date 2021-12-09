@@ -37,8 +37,6 @@ class Components {
 
 const dataSource = new FileMakerDataSource()
 const components = new Components(dataSource)
-window.requestComponentStateUpdate = () => {
-  components.pull()
-}
+window.requestComponentStateUpdate = () => components.pull()
 
 export default components

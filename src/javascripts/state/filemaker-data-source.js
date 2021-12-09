@@ -2,7 +2,7 @@ import { debounce } from '../utils'
 
 // For local testing, dummy FileMaker result for script that returns the state
 // of all defined components/fields.
-const FM_RESULT = [
+const DUMMY_FM_RESULT = [
   {
     component: 'demo-text-field',
     state: {
@@ -31,7 +31,7 @@ export default class FileMakerDataSource {
   }
 
   pull (callback) {
-    callback(FM_RESULT)
+    callback(DUMMY_FM_RESULT)
     return this
   }
 }
