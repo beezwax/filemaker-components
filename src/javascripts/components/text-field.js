@@ -5,8 +5,6 @@ class TextField extends HTMLElement {
     super()
     this.attachShadow({ mode: 'open' })
 
-    this.id = this.getAttribute('id')
-
     this.container = document.createElement('div')
     this.container.innerHTML = `
       <input type="text">
@@ -14,10 +12,24 @@ class TextField extends HTMLElement {
     this.shadowRoot.append('', this.container)
   }
 
-  connectedCallback () {
-    if (!this.id || this.id === 'null') throw new Error('Web Component must specify an `id` attribute')
+  get bind () {
+    return this.getAttribute('bind')
+  }
 
-    const state = components.add(this.id)
+  set bind (value) {
+    this.setAttribute('bind', value)
+  }
+
+  get isBound () {
+    return this.bind && this.bind !== 'null'
+  }
+
+  connectedCallback () {
+    if (this.isBound) this.bindState()
+  }
+
+  bindState () {
+    const state = components.add(this.bind)
     const input = this.container.querySelector('input')
 
     // state -> DOM
