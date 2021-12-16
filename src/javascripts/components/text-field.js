@@ -25,25 +25,41 @@ class TextField extends HTMLElement {
   }
 
   connectedCallback () {
-    if (this.isBound) this.bindState()
+    this.state = this.bindState()
+
+    // Initial state from attributes
+    this.state.update({
+      value: this.getAttribute('value')
+    }, { target: 'TWO_WAY' })
   }
 
   bindState () {
+    if (!this.isBound) throw new Error('Must specify a bind attribute')
+
     const state = components.add(this.bind)
     const input = this.container.querySelector('input')
 
     // state -> DOM
     state.onChanged((state) => {
-      console.log('state is', state)
+      console.log('state changed', state)
+      this.setAttribute('value', state.value)
       input.value = state.value
     })
 
     // DOM -> state
     input.addEventListener('keyup', (e) => {
+      this.setAttribute('value', input.value)
       state.update((state) => ({
         value: input.value
-      }), { source: 'DOM' })
+      }), { target: 'DATASOURCE' })
     })
+
+    return state
+  }
+
+  setState (newState) {
+    this.state.update(newState, { target: 'DOM' })
+    return this
   }
 }
 

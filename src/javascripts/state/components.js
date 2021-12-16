@@ -18,7 +18,7 @@ class Components {
         const { id, state } = record
         const oldState = this.components.get(id)
         if (oldState) {
-          oldState.update(state, { source: 'FILEMAKER' })
+          oldState.update(state, { target: 'DOM' })
         } else {
           console.warn(`FileMaker result included state for a component with id ${id}, but no component with that id was found in the Web Viewer.`)
         }

@@ -17,7 +17,7 @@ export default class State {
   // IMPORTANT: Changing the state without using this method WILL break things,
   // so this must be the only way to change the state.
   //
-  update (fn, { source }) {
+  update (fn, { target }) {
     if (typeof fn === 'function') {
       this._state = Object.assign({}, this._state, fn(this._state))
     } else if (typeof fn === 'object') {
@@ -26,8 +26,8 @@ export default class State {
       throw new Error('Invalid argument: Expected function or object.')
     }
 
-    if (source === 'FILEMAKER') this.triggerOnChange(this._state)
-    if (source === 'DOM') this.push()
+    if (target === 'DOM' || target === 'TWO_WAY') this.triggerOnChange(this._state)
+    if (target === 'DATASOURCE' || target === 'TWO_WAY') this.push()
   }
 
   push () {
