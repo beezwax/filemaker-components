@@ -26,8 +26,8 @@ export default class State {
       throw new Error('Invalid argument: Expected function or object.')
     }
 
-    if (target === 'DOM' || target === 'TWO_WAY') this.triggerOnChange(this._state)
-    if (target === 'DATASOURCE' || target === 'TWO_WAY') this.push()
+    if (target === 'DOM' || target === 'BOTH') this.triggerOnChange(this._state)
+    if (target === 'DATASOURCE' || target === 'BOTH') this.push()
   }
 
   push () {

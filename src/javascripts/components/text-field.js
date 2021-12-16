@@ -20,7 +20,7 @@ class TextField extends HTMLElement {
     this.setAttribute('bind', value)
   }
 
-  get isBound () {
+  get hasBindAttribute () {
     return this.bind && this.bind !== 'null'
   }
 
@@ -30,11 +30,11 @@ class TextField extends HTMLElement {
     // Initial state from attributes
     this.state.update({
       value: this.getAttribute('value')
-    }, { target: 'TWO_WAY' })
+    }, { target: 'BOTH' })
   }
 
   bindState () {
-    if (!this.isBound) throw new Error('Must specify a bind attribute')
+    if (!this.hasBindAttribute) throw new Error('Must specify a bind attribute')
 
     const state = components.add(this.bind)
     const input = this.container.querySelector('input')
