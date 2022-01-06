@@ -7,7 +7,7 @@ class TextField extends HTMLElement {
 
     this.container = document.createElement('div')
     this.container.innerHTML = `
-      <input type="text">
+      <textarea type="text">
     `
     this.shadowRoot.append('', this.container)
   }
@@ -37,18 +37,16 @@ class TextField extends HTMLElement {
     if (!this.hasBindAttribute) throw new Error('Must specify a bind attribute')
 
     const state = components.add(this.bind)
-    const input = this.container.querySelector('input')
+    const input = this.container.querySelector('textarea')
 
     // state -> DOM
     state.onChanged((state) => {
       console.log('state changed', state)
-      this.setAttribute('value', state.value)
       input.value = state.value
     })
 
     // DOM -> state
     input.addEventListener('keyup', (e) => {
-      this.setAttribute('value', input.value)
       state.update((state) => ({
         value: input.value
       }), { target: 'DATASOURCE' })
